@@ -29,3 +29,23 @@ Behavioral:
     HED: optional
     stim_file: optional
   additional_columns: allowed
+
+SleepStages:
+  selectors:
+    - suffix == "stages"
+    - extension == ".tsv"
+  initial_columns:
+    - onset
+    - duration
+    - stage
+  columns:
+    onset: required
+    duration: required
+    stage: required
+    position: optional
+    scorer: optional
+    confidence: optional
+    begsample: optional
+    endsample: optional
+    channel: optional
+  additional_columns: allowed_if_defined
