@@ -152,3 +152,17 @@ timeseries__pet:
     reconstruction: optional
     run: optional
     recording: optional
+    
+sleepStages:
+  suffixes:
+    - stages
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - eeg
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
