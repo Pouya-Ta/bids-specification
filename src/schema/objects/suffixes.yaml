@@ -877,3 +877,8 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+
+stages:
+  value: stages
+  display_name: Sleep staging annotations
+  description: Tabular file containing sleep epoch annotations
