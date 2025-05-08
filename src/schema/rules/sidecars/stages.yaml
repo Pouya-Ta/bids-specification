@@ -1,21 +1,22 @@
-SleepStages:
+SidecarStages:
   selectors:
+    - '"task" in entities'
     - suffix == "stages"
     - extension == ".json"
-  fields:
-    onset:
-      level: required
-    duration:
-      level: required
-    stage:
-      level: required
-    position:
-      level: optional
-    scorer:
-      level: recommended
-    confidence:
-      level: optional
-    stages_definition:
-      level: optional
-    epoch_duration:
-      level: optional
+#  fields:
+ #   onset:
+  #    level: required
+   # duration:
+    #  level: required
+#    stage:
+ #     level: required
+  #  position:
+  #    level: optional
+  #  scorer:
+  #    level: recommended
+  #  confidence:
+   #   level: optional
+ #   stages_definition:
+  #    level: optional
+#    epoch_duration:
+ #     level: optional
