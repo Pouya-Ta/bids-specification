@@ -4042,14 +4042,14 @@ iEEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
-  
 stages_definition:
   display_name: Stages definition
-  description: Criteria used for identifying sleep stages
+  description: |
+    Criteria used for identifying sleep stages
   type: string
-
 epoch_duration:
   display_name: Epoch duration
-  description: Epoch duration in seconds
+  description: |
+    Epoch duration in seconds
   type: number
   unit: seconds
