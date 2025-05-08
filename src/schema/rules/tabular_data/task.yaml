@@ -33,7 +33,7 @@ Behavioral:
 SleepStages:
   selectors:
     - suffix == "stages"
-    - extension == ".tsv"
+    - extension in [".tsv", ".json"]
   initial_columns:
     - onset
     - duration
