@@ -35,10 +35,6 @@ SleepStages:
     - '"task" in entities'
     - suffix == "stages"
     - extension in [".tsv", ".json"]
-  initial_columns:
-    - onset
-    - duration
-    - stage
   columns:
     onset: required
     duration: required
@@ -50,4 +46,7 @@ SleepStages:
     endsample: optional
     channel: optional
   additional_columns: allowed
-
+  initial_columns:
+    - onset
+    - duration
+    - stage
