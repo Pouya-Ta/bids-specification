@@ -153,16 +153,21 @@ timeseries__pet:
     run: optional
     recording: optional
     
-sleepStages:
+stages:
   suffixes:
     - stages
   extensions:
     - .tsv
     - .json
   datatypes:
+    - beh
     - eeg
+    - ieeg
+    - meg
+    - nirs
   entities:
     subject: required
     session: optional
-    task: optional
+    task: required
     acquisition: optional
+    run: optional
