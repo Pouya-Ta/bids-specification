@@ -12,3 +12,25 @@ StimulusPresentation:
   fields:
     StimulusPresentation: recommended
     VisionCorrection: optional
+
+SleepStages:
+  selectors:
+    - suffix == "stages"
+    - extension == ".json"
+  fields:
+    onset:
+      level: required
+    duration:
+      level: required
+    stage:
+      level: required
+    position:
+      level: optional
+    scorer:
+      level: recommended
+    confidence:
+      level: optional
+    stages_definition:
+      level: optional
+    epoch_duration:
+      level: optional
