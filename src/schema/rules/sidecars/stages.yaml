@@ -1,4 +1,5 @@
 ---
+# Validation rule for JSON sidecars of sleep stages
 SidecarStages:
   # Only apply to JSON sidecars for stage files
   selectors:
@@ -22,4 +23,3 @@ SidecarStages:
       level: optional
     epoch_duration:
       level: optional
-      
