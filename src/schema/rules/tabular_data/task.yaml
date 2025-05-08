@@ -32,6 +32,7 @@ Behavioral:
 
 SleepStages:
   selectors:
+    - '"task" in entities'
     - suffix == "stages"
     - extension in [".tsv", ".json"]
   initial_columns:
@@ -48,4 +49,5 @@ SleepStages:
     begsample: optional
     endsample: optional
     channel: optional
-  additional_columns: allowed_if_defined
+  additional_columns: allowed
+
