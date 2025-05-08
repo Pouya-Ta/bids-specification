@@ -106,6 +106,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          repository: Pouya-Ta/bids-specification 
+          ref: BIDS-Sleep-Staging-Extension 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -113,7 +116,4 @@ jobs:
       - name: Install BIDS Validator
         run: npm install -g bids-validator
       - name: Run BIDS Validator
-        run: |
-         bids-validator \
-           --schema src/schema \
-           "examples/Surrey cEEGrid sleep data set"
+        run: bids-validator "examples/Surrey cEEGrid sleep data set" --schema-dir src/schema
