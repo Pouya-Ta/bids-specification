@@ -1,4 +1,6 @@
+---
 SidecarStages:
+  # Only apply to JSON sidecars for stage files
   selectors:
     - '"task" in entities'
     - suffix == "stages"
@@ -20,3 +22,4 @@ SidecarStages:
       level: optional
     epoch_duration:
       level: optional
+      
