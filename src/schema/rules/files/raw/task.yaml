@@ -152,7 +152,6 @@ timeseries__pet:
     reconstruction: optional
     run: optional
     recording: optional
-    
 stages:
   suffixes:
     - stages
