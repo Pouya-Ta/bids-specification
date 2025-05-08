@@ -1,4 +1,5 @@
 ---
+
 CheckUndefinedLabels:
   issue:
     code: UNDEFINED_LABELS
