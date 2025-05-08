@@ -16,7 +16,7 @@ https://bids-specification.readthedocs.io/en/stable/01-introduction.html
 
 **Task description**
 
-The patient performed no tasks. The recording equipment was mounted immediately prior to bedtime, and the recordings took place at the sleep laboratory of the Surrey Clinical Research Centre.
+The patient performed no tasks. The recording equipment was mounted immediately prior to bedtime, and the recordings took place at the sleep laboratory of the Surrey Clinical Research Center.
 
 Note that due to a miscommunication during the study, alignment information between cEEGrid and PSG recordings has not been saved. This means that to obtain a useful comparison between the two methods, for instance to align the manual scoring with the cEEGrid recordings, some post processing has to be performed. In the derivative dataset, 'aligned1', we have shared our own best attempt at alignment. 
 
