@@ -851,6 +851,11 @@ sessions:
     These files MUST include a session_id column and describe each session by one and only one row.
     Column names in sessions.tsv files MUST be different from group level participant key column
     names in the participants.tsv file.
+stages:
+  value: stages
+  display_name: Sleep staging annotations
+  description: |
+    Tabular file containing sleep epoch annotations
 stim:
   value: stim
   display_name: Continuous recording
@@ -877,8 +882,3 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
-stages:
-  value: stages
-  display_name: Sleep staging annotations
-  description: |
-    Tabular file containing sleep epoch annotations
