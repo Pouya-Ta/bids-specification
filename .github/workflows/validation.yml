@@ -101,19 +101,57 @@ jobs:
       run: make validate_citation_cff
 
   # Validate BIDS dataset
+#  validate-bids:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v4
+#        with:
+#          repository: Pouya-Ta/bids-specification 
+#          ref: BIDS-Sleep-Staging-Extension 
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: '16'
+#      - name: Install BIDS Validator
+#        run: npm install -g bids-validator
+#      - name: Run BIDS Validator
+#        run: bids-validator "examples/Surrey cEEGrid sleep data set" --schema-dir src/schema
+
   validate-bids:
     runs-on: ubuntu-latest
     steps:
+
+      # 1) Get your code
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          repository: Pouya-Ta/bids-specification 
-          ref: BIDS-Sleep-Staging-Extension 
+          repository: Pouya-Ta/bids-specification
+          ref: BIDS-Sleep-Staging-Extension
+
+      # 2) Build the JSON schema from your YAML
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install schema-builder
+        run: pip install bidsschematools
+
+      - name: Build BIDS schema
+        run: bidsschematools build --output-dir build/schema src/schema
+
+      # 3) Install & run the BIDS Validator against the built schema
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '16'
+
       - name: Install BIDS Validator
         run: npm install -g bids-validator
+
       - name: Run BIDS Validator
-        run: bids-validator "examples/Surrey cEEGrid sleep data set" --schema-dir src/schema
+        run: |
+          bids-validator "examples/Surrey cEEGrid sleep data set" \
+                        --schema-dir build/schema
+  
