@@ -136,6 +136,6 @@ jobs:
 
       - name: Run BIDS Validator
         run: |
+          npm install -g bids-validator
           bids-validator "examples/Surrey cEEGrid sleep data set" \
-                      -s build/schema.json
-  
+                        --schema build/schema.json
