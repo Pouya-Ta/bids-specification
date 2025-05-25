@@ -136,10 +136,10 @@ jobs:
           python-version: '3.x'
 
       - name: Install schema-builder
-        run: pip install bidsschematools
+        run: python -m pip install bidsschematools
 
       - name: Build BIDS schema
-        run: python3 -m bidsschematools build --output-dir build/schema src/schema
+        run: bst build --output-dir build/schema src/schema
 
       # 3) Install & run the BIDS Validator against the built schema
       - name: Set up Node.js
