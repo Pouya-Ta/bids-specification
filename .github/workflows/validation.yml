@@ -126,16 +126,15 @@ jobs:
           bst export --schema src/schema --output build/schema.json
 
       # 3) Install & run the BIDS Validator against the built schema
-      - name: Set up Node.js
+      - name: Set up Node.js (v18)
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18.x'
 
       - name: Install BIDS Validator
         run: npm install -g bids-validator
 
-      - name: Run BIDS Validator
+      - name: Run BIDS Validator against your custom schema
         run: |
-          npm install -g bids-validator
           bids-validator "examples/Surrey cEEGrid sleep data set" \
                         --schema build/schema.json
