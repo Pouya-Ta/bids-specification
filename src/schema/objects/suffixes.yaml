@@ -855,7 +855,10 @@ stages:
   value: stages
   display_name: Sleep staging annotations
   description: |
-    Tabular file containing sleep epoch annotations
+    Tabular file containing sleep epoch annotations.
+    Each row must have onset, duration and stage (e.g. Wake, N1, N2, N3, REM).
+  fileType: TSV
+  sidecar: true
 stim:
   value: stim
   display_name: Continuous recording
