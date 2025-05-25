@@ -1,24 +1,3 @@
-#SleepStages:
-#  selectors:
-#    - '"task" in entities'
-#    - suffix == "stages"
-#  #  - extension in [".tsv", ".json"]
-#  columns:
-#    onset: required
-#    duration: required
-#    stage: required
-#    position: optional
-#    scorer: optional
-#    confidence: optional
-#    begsample: optional
-#    endsample: optional
-#    channel: optional
-#  additional_columns: allowed
-#  initial_columns:
-#    - onset
-#    - duration
-#    - stage
-
 SleepStagesTSV:
   selectors:
     - '"task" in entities'
