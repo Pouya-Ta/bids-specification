@@ -54,27 +54,12 @@ hypnogramSidecar:
             description: |
               Human-readable description of the scorer.
               For multiple scorers, all possible scorer values MUST be defined here.
-    confidence:
-      name: confidence
-      display_name: Confidence Score
-      description: |
-        Overall confidence score for the sleep stage annotation.
-      type: object
-      properties:
-        Levels:
-          type: object
-          additionalProperties:
-            type: string
-            description: |
-              A human-readable description for the confidence scores (for example, "posterior probability").
-      type: object
-      properties:
-        Levels:
-          type: object
-          additionalProperties:
-            type: string
-            description: |
-              A human-readable description for the confidence scores (for example, "posterior probability").
+confidence:
+  name: confidence
+  display_name: Confidence Score
+  description: |
+    Overall confidence score for the sleep stage annotation.
+  type: number
   metadata:
     - stages_definition:
         required: false
