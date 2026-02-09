@@ -24,26 +24,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Name": "REQUIRED",
-      "BIDSVersion": "REQUIRED",
-      "HEDVersion": "RECOMMENDED",
-      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
-      "DatasetType": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED if CITATION.cff is not present",
-      "Keywords": "OPTIONAL",
-      "Acknowledgements": "OPTIONAL",
-      "HowToAcknowledge": "OPTIONAL",
-      "Funding": "OPTIONAL",
-      "EthicsApprovals": "OPTIONAL",
-      "ReferencesAndLinks": "OPTIONAL",
-      "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "RECOMMENDED",
-      "SourceDatasets": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_json_table('dataset_metadata.dataset_description') }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
@@ -61,7 +42,7 @@ Example:
 ```JSON
 {
   "Name": "The mother of all experiments",
-  "BIDSVersion": "1.6.0",
+  "BIDSVersion": "1.10.1",
   "DatasetType": "raw",
   "License": "CC0",
   "Authors": [
@@ -87,7 +68,7 @@ Example:
     "Alzheimer A., & Kraepelin, E. (2015). Neural correlates of presenile dementia in humans. Journal of Neuroscientific Data, 2, 234001. doi:1920.8/jndata.2015.7"
   ],
   "DatasetDOI": "doi:10.0.2.3/dfjj.10",
-  "HEDVersion": "8.0.0",
+  "HEDVersion": "8.4.0",
   "GeneratedBy": [
     {
       "Name": "reproin",
@@ -111,7 +92,7 @@ Example:
 
 As for any BIDS dataset, a `dataset_description.json` file MUST be found at the
 top level of every derived dataset:
-`<dataset>/derivatives/<pipeline_name>/dataset_description.json`.
+`<dataset>/derivatives/<pipeline-name>/dataset_description.json`.
 
 In contrast to raw BIDS datasets, derived BIDS datasets MUST include a
 `GeneratedBy` key:
@@ -130,8 +111,8 @@ and a guide for using macros can be found at
 
 If a derived dataset is stored as a subdirectory of the raw dataset, then the `Name` field
 of the first `GeneratedBy` object MUST be a substring of the derived dataset directory name.
-That is, in a directory `<dataset>/derivatives/<pipeline>[-<variant>]/`, the first
-`GeneratedBy` object should have a `Name` of `<pipeline>`.
+That is, in a directory `<dataset>/derivatives/<pipeline-name>[-<variant>]/`, the first
+`GeneratedBy` object should have a `Name` of `<pipeline-name>`.
 
 Example:
 
@@ -217,7 +198,3 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
-
-<!-- Link Definitions -->
-
-[bids uris]: ../common-principles.md#bids-uri

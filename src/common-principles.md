@@ -15,7 +15,7 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
--   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   REQUIRED: Data cannot be interpreted without this information (or the ambiguity is unacceptably high)
 -   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
 -   OPTIONAL: Users and/or tools might find it useful to have this information
 
@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -93,7 +93,7 @@ be reviewed to include common data types in the future releases of the BIDS
 specification.
 
 It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
-and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or inapplicable*,
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
@@ -127,6 +127,12 @@ session subdirectories are present) are subdirectories named according to
 data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
+
+**Specific structure of derived data**.
+In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
+template (`tpl-<label>`) directories may be found at the root of the dataset,
+and these may include cohort (`cohort-<label>`) subdirectories.
+These directories are described in [Templates and atlases](derivatives/atlas.md).
 
 ### Other top level directories
 
@@ -297,6 +303,15 @@ However, in the case that these data are to be included:
     through the `sourcedata/` directory mechanism.
     In the case of source data, these aspects are likely more stringent.
 
+**Templates and atlases as derived data.**
+Templates and atlases are key neuroscientific tools to carry out group-level inferences
+and also employed in many atlas-based methodologies (such as atlas-based segmentation).
+Original templates and atlases employed as primary data to the analysis MAY be stored
+within the `sourcedata/atlases/` directory.
+Atlases and artifacts derived from atlases are considered derived data
+and MUST be stored as derivative datasets,
+as described in the next section.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
@@ -309,7 +324,7 @@ Derivatives can be stored/distributed in two ways:
     Different components of a pipeline can, however, also be stored under different
     subdirectories.
     There are few restrictions on the directory names;
-    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is RECOMMENDED to use the format `<pipeline-name>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
@@ -332,6 +347,15 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-stats/sub-0001
     ```
 
+    Example of an atlas-generating pipeline, including outputs for individual subjects
+    prior to aggregation in the
+    [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
+
+    ```Plain
+    <dataset>/derivatives/atlasgenerator/sub-0001
+    <dataset>/derivatives/atlasgenerator/tpl-MNI152NLin2009cAsym
+    ```
+
     Example of a pipeline with nested derivative directories:
 
     ```Plain
@@ -352,7 +376,7 @@ Derivatives can be stored/distributed in two ways:
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -367,9 +391,11 @@ Derivatives can be stored/distributed in two ways:
                 "...": "",
             },
             "sourcedata": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
+                "raw": {
+                    "sub-01": {},
+                    "sub-02": {},
+                    "...": "",
+                },
             },
             "sub-01": {},
             "sub-02": {},
@@ -381,16 +407,19 @@ Derivatives can be stored/distributed in two ways:
 
 Throughout this specification, if a section applies particularly to derivatives,
 then Case 1 will be assumed for clarity in templates and examples, but removing
-`/derivatives/<pipeline>` from the template name will provide the equivalent for
+`/derivatives/<pipeline-name>[-<variant>]` from the template name will provide the equivalent for
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
-Consequently, files should be organized to comply with BIDS to the full extent
+Consequently, files SHOULD be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject's directory;
-if session-specific derivatives are generated, they should be deposited under a
+Any subject-specific derivatives SHOULD be housed within each subject's directory;
+if session-specific derivatives are generated, they SHOULD be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
+Likewise, any template-specific derivatives SHOULD be housed within each template's directory;
+if cohort-specific derivatives are generated, they SHOULD be deposited under a
+cohort subdirectory within the corresponding template directory; and so on.
 
 ### Non-compliant derivatives
 
@@ -423,8 +452,8 @@ A guide for using macros can be found at
             "..." : "",
         },
         "derivatives": {
-            "pipeline_1": {},
-            "pipeline_2": {},
+            "pipeline1-v1": {},
+            "pipeline2": {},
             "...": "",
         },
         "dataset_description.json": "",
@@ -591,7 +620,7 @@ Example:
 ```
 
 Each level can be described with a string as in the example above,
-or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+or with an object containing the fields [`Description`](./glossary.md#description-sense-1-metadata)
 and [`TermURL`](./glossary.md#termurl-metadata)
 like in the example below.
 
@@ -631,7 +660,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
-    compressed tabular files files MUST NOT include a header line.
+    compressed tabular files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
     [`Columns`](glossary.md#columns-metadata) field.
     Each column MAY additionally be described with a column description,
@@ -880,6 +909,28 @@ A guide for using macros can be found at
     }
 ) }}
 
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
@@ -962,7 +1013,7 @@ The dataset root is the nearest parent directory that contains a valid
 `dataset_description.json`.
 
 All other dataset names MUST be specified in the `DatasetLinks` object in
-[dataset_description.json][], which maps dataset names to URIs that point
+[dataset_description.json][dataset-description], which maps dataset names to URIs that point
 to BIDS dataset locations.
 If the scheme is omitted from a URI in `DatasetLinks`,
 that path is resolved relative to the current dataset root
@@ -1067,7 +1118,7 @@ Describing dates and timestamps:
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
     To distinguish real dates from shifted dates,
-    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    it is RECOMMENDED to set shifted dates to the year 1925 or earlier.
     Note that some data formats do not support arbitrary recording dates.
     For example, the [EDF](https://www.edfplus.info/)
     data format can only contain recording dates after 1985.
@@ -1159,8 +1210,7 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files/data-summary-files.md
-[dataset_description.json]: modality-agnostic-files/data-summary-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files/data-summary-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator
