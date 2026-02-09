@@ -8,18 +8,11 @@ hypnogram:
     - duration
     - stage
   columns:
-    onset:
-      required: true
-    duration:
-      required: true
-    stage:
-      required: true
-      levels: optional
-    scorer:
-      required: false
-      levels: optional
-    confidence:
-      required: false
+    onset: required
+    duration: required
+    stage: required
+    scorer: optional
+    confidence: optional
   additional_columns: allowed_if_defined
 
 hypnogramSidecar:
