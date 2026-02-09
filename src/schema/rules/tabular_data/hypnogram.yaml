@@ -20,8 +20,6 @@ hypnogram:
       levels: optional
     confidence:
       required: false
-    confidence_<stage_label>:
-      required: false
   additional_columns: allowed_if_defined
 
 hypnogramSidecar:
