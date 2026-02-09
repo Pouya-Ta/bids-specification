@@ -868,7 +868,7 @@ scorer:
   type: string
 confidence:
   name: confidence
-  display_name: Confidence
+  display_name: Confidence for sleep stage
   description: |
     Confidence score (0–1) for automated scoring
   type: number
