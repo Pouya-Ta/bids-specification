@@ -62,5 +62,5 @@ confidence:
     Overall confidence score for the sleep stage annotation.
   type: number
   metadata:
-    - stages_definition:
+    - StagesDefinition:
         required: false
