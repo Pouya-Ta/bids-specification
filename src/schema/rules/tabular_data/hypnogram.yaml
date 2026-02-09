@@ -67,13 +67,6 @@ hypnogramSidecar:
             type: string
             description: |
               A human-readable description for the confidence scores (for example, "posterior probability").
-    confidence_<stage_label>:
-      name: confidence_<stage_label>
-      display_name: Confidence Score by Stage
-      description: |
-        Confidence score for a specific sleep stage,
-        where <stage_label> corresponds to a value in the stage column (e.g., confidence_N1).
-        This is useful for representing the full probability distribution from an automated scorer.
       type: object
       properties:
         Levels:
