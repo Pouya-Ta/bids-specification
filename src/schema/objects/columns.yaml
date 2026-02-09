@@ -872,12 +872,3 @@ confidence:
   description: |
     Confidence score (0–1) for automated scoring
   type: number
-confidence_<stage_label>:
-  name: confidence_<stage_label>
-  display_name: Confidence for Stage
-  description: |
-    A numeric value (0-1) representing the confidence score in the assigned sleep stage for automated scorers.
-    For automated scorers, this value represents the posterior probability of the winning class.
-    To store the full probability distribution across all possible stages, users MAY add separate columns
-    (e.g., confidence_N1, confidence_N2, confidence_N3), which MUST also be described in the JSON sidecar.
-  type: number
