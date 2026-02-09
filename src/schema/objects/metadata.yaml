@@ -4197,3 +4197,10 @@ iEEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+StagesDefinition:
+  name: StagesDefinition
+  display_name: Sleep stage scoring standard
+  description: |
+    Reference to the scoring criteria used to assign sleep stages
+    (for example, the AASM Manual).
+  type: string

@@ -852,3 +852,23 @@ template_z:
   description: |
     Assumed or ideal position along the z axis.
   type: number
+stage:
+  name: stage
+  display_name: Sleep stage
+  description: |
+    Sleep stage label (for example, Wake, N1, N2, or REM).
+    It is RECOMMENDED to use labels from established guidelines.
+  type: string
+scorer:
+  name: scorer
+  display_name: Scorer
+  description: |
+    Source of the annotation (for example, a human rater or an automated algorithm).
+    This is highly RECOMMENDED when multiple scorers are involved.
+  type: string
+confidence:
+  name: confidence
+  display_name: Confidence for sleep stage
+  description: |
+    Confidence score (0–1) for automated scoring
+  type: number
