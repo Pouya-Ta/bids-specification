@@ -1,3 +1,4 @@
+---
 hypnogram:
   selectors:
     - suffix == "hypnogram"
